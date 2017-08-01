@@ -12,6 +12,7 @@ Because it's tested and works. Allows hot reloading for easy testing and avoids 
 * Redux for state management
 ##### Backend
 *changing Webpack Dev Server to Webpack middleware in order to utilize Express routes as backend API routes*
+* Will build out local MongoDB + Mongoose server
 * Express
   * API routes available at __dirname/api ...
 * Node
