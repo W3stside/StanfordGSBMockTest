@@ -13,6 +13,7 @@ Because it's tested and works. Allows hot reloading for easy testing and avoids 
 ##### Backend
 *changing Webpack Dev Server to Webpack middleware in order to utilize Express routes as backend API routes*
 * Express
+  * API routes available at __dirname/api ...
 * Node
 
 #### Testing
