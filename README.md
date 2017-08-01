@@ -1,8 +1,8 @@
 # Stanford GSB Mock Test
 
-Uses: 
+##### Uses: 
 ![](http://jpsierens.com/wp-content/uploads/2016/06/react-eco-wp.gif)
-Why?
+##### Why?
 Because it's tested and works. Allows hot reloading for easy testing and avoids unnecessary full page reloads. Utilizes Webpack dev server for dev env.
 
 # Pre Code Thoughts...
