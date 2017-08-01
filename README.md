@@ -21,7 +21,7 @@ Because it's tested and works. Allows hot reloading for easy testing and avoids 
 * Mocha
 * Chai
 * Chai-as-promised
-
+<hr/>
 ### Pseudo Algo
 ##### START
 1. user navs to site
