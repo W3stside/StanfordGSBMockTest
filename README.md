@@ -33,8 +33,10 @@ Because it's tested and works. Allows hot reloading for easy testing and avoids 
 4. Test instructions page and CTA for starting test
 5. Questions .......
  1. store all questions in DB
-  * Split questions in their respective cats
-  * Create util fn to rando pick question from Arr
+   * Split questions in their respective cats
+   * Create util fn to rando pick question from Arr
+   * Questions SHOULD NOT be repeated .. e.g dont ask same Adaptability questions - use deduping logic when pulling questions
+  
  2. Pull in questions from DB into Redux state on ComponentDidMount()
  3. How to present questions? <-- figure this out
 6. Results
