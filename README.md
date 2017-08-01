@@ -48,11 +48,11 @@ Because it's tested and works. Allows hot reloading for easy testing and avoids 
 > dimesions = [Ad, In, Co, Re, Cu, De]; *Abbrv of each dimension - e.g Ad = Adaptive etc*
 
 Questions:
-1. Ad or In
-2. In or Co
-3. Co or Re 
-4. Re or Cu
-5. Cu or De
+1. Ad or In = [0,1]
+2. In or Co = [1,2]
+3. Co or Re = [2,3] 
+4. Re or Cu = [3,4]
+5. Cu or De = [4,5]
 
 6. Ad or Co
 7. In or Re
@@ -84,5 +84,7 @@ Questions:
 29. Re or Ad
 30. Cu or In
 
-
+## Random Notes and Thoughts on how to create this algo
+* ISSUES
+1. having trouble thinking of way to randomize question choices across all answer arrays
 
