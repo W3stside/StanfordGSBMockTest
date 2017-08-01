@@ -22,5 +22,15 @@ Because it's tested and works. Allows hot reloading for easy testing and avoids 
 * Chai
 * Chai-as-promised
 
+### Pseudo Algo
+##### START
+1. user navs to site
+2. creates account
+3. Logins
+4. Test instructions page and CTA for starting test
+5. Questions .......
+6. Results
+##### END
+
 
 
