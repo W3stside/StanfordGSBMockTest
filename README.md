@@ -42,5 +42,47 @@ Because it's tested and works. Allows hot reloading for easy testing and avoids 
 6. Results
 ##### END
 
+<hr/>
+
+## Test Questions Formatting Algo
+> dimesions = [Ad, In, Co, Re, Cu, De]; *Abbrv of each dimension - e.g Ad = Adaptive etc*
+
+Questions:
+1. Ad or In
+2. In or Co
+3. Co or Re 
+4. Re or Cu
+5. Cu or De
+
+6. Ad or Co
+7. In or Re
+8. Co or Cu
+9. Re or De
+10. Cu or Ad
+
+11. Ad or Re
+12. In or Cu
+13. Co or De
+14. Re or Ad
+15. Cu or In
+
+16. Ad or In
+17. In or Co
+18. Co or Re 
+29. Re or Cu
+20. Cu or De
+
+21. Ad or Co
+22. In or Re
+23. Co or Cu
+24. Re or De
+25. Cu or Ad
+
+26. Ad or Re
+27. In or Cu
+28. Co or De
+29. Re or Ad
+30. Cu or In
+
 
 
