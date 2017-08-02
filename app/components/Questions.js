@@ -6,18 +6,18 @@ import { answerChoice, fetchTestAnswers } from '../actions';
 import {compose, lifecycle} from 'recompose';
 // UTILS
 import * as utils from '../utils/utils';
-// scss
-import { UI } from '../styles/UI.scss';
+
 /* eslint react/prop-types: 0 */
 
 const Questions = (props) => {
     const {testAnswers} = props.testAnswers;
     const {answerChoices, clickCount} = props.users;
+    // Picks a non repeating random number in the array
     const numChoice = utils.randNoRepeat([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
     // Show results page if clickCount = 30
     if (clickCount === 30) {
         return (
-            <div>
+            <div style={{fontSize: '200%'}}>
                 <h1> Your results are: </h1>
                 <table>
                     <tbody>
@@ -27,9 +27,9 @@ const Questions = (props) => {
                         </tr>
                         {Object.keys(answerChoices).map(item => {
                             return (
-                                <tr>
-                                    <td>{item}</td>
-                                    <td>{answerChoices[item]}</td>
+                                <tr key={`${item}-tr`}>
+                                    <td style={{backgroundColor: 'violet', padding: 15}}>{item}</td>
+                                    <td style={{backgroundColor: 'skyblue', padding: 15}}>{answerChoices[item]}</td>
                                 </tr>
                             );
                         }
@@ -43,12 +43,10 @@ const Questions = (props) => {
     if (testAnswers && testAnswers.length) {
         return (
             <div style={{display: 'inline-flex', flexFlow: 'column wrap', width: '50%'}}>
-                <h1>{clickCount}</h1>
                 {/* Answer 1 */}
                 <div style={{display: 'flex', flexFlow: 'column nowrap', alignItems: 'center', justifyContent: 'center', margin: 15, padding: 15, width: '100%', boxShadow: '0px 0px 12px 5px rgba(0,0,0,0.25)'}}>
-                    <h3>{testAnswers[clickCount % 6].answers[numChoice()]}</h3>
+                    <h1>{testAnswers[clickCount % 6].answers[numChoice()]}</h1>
                     <button
-                        className={UI}
                         onClick={() => props.answerChoice(testAnswers[clickCount % 6].name, (clickCount % 5))}
                         style={{fontSize: 28}}>
                         Choose
@@ -56,12 +54,13 @@ const Questions = (props) => {
                 </div>
                 {/* Answer 2
                 <div style={{display: 'flex', flexFlow: 'column nowrap', alignItems: 'center', justifyContent: 'center', margin: 15, padding: 15, width: '100%', boxShadow: '0px 0px 12px 5px rgba(0,0,0,0.25)'}}>
-                    <h3>{testAnswers[clickCount % 6].answers[numChoice()]}</h3>
+                    <h1>{testAnswers[clickCount % 6].answers[numChoice()]}</h1>
                     <button
-                        className={UI}
                         onClick={() => props.answerChoice(testAnswers[clickCount].answers[numChoice()])}
                         style={{fontSize: 28}}>
-                        {testAnswers[clickCount].answers[numChoice()]}
+                        {clickCount < 4 ? testAnswers[clickCount + 1].answers[numChoice()]
+                        : clickCount < 9 ? testAnswers[clickCount - 3].answers[numChoice()]
+                        : testAnswers[clickCount].answers[numChoice()]}
                     </button>
                 </div>*/}
             </div>
@@ -72,7 +71,7 @@ const Questions = (props) => {
 };
 
 // ///////////////////////////////////////////////
-// ////////////////// LOGIC
+// ////////////////// LOGIC /////////////////////
 // //////////////////////////////////////////////
 
 Questions.propTypes = {

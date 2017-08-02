@@ -1,12 +1,4 @@
-import * as types from './types';
 import axios from 'axios';
-
-export function filterTable(filter) {
-    return {
-        type: types.FILTER,
-        filter
-    };
-}
 
 export function fetchTestAnswers() {
     return function(dispatch) {
