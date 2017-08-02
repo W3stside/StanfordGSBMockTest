@@ -87,4 +87,7 @@ Questions:
 ## Random Notes and Thoughts on how to create this algo
 * ISSUES
 1. having trouble thinking of way to randomize question choices across all answer arrays
-
+  * couldn't come up with an algorithm here.
+  * struggled to find any real solution
+    * tried using a clickCount counter based on user clicking question answer buttons but didn't work too well
+    * 
