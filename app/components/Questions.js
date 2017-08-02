@@ -14,18 +14,42 @@ const Questions = (props) => {
     const {testAnswers} = props.testAnswers;
     const {clickCount} = props.users;
     const numChoice = utils.randNoRepeat([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    console.log(numChoice);
-    // const variance = (click) => {
-    //     if (click >= 5) {
-    //         return click - 2;
-    //     }
-    //     return click;
-    // };
     if (clickCount === 30) {
         return (
             <div>
                 <h1> Your results are: </h1>
-                { props.users.answerChoices.map(item => <h4>{item}</h4>) }
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Score</th>
+                        </tr>
+                        <tr>
+                            <td>Adaptive</td>
+                            <td>{props.users.answerChoices.Adaptive}</td>
+                        </tr>
+                        <tr>
+                            <td>Integrity</td>
+                            <td>{props.users.answerChoices.Integrity}</td>
+                        </tr>
+                        <tr>
+                            <td>Collaborative</td>
+                            <td>{props.users.answerChoices.Collaborative}</td>
+                        </tr>
+                        <tr>
+                            <td>Result Oriented</td>
+                            <td>{props.users.answerChoices.Result}</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Focused</td>
+                            <td>{props.users.answerChoices.Customer}</td>
+                        </tr>
+                        <tr>
+                            <td>Detail Oriented</td>
+                            <td>{props.users.answerChoices.Detail}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         );
     }
@@ -35,9 +59,9 @@ const Questions = (props) => {
             {/* Answer 1 */}
             <button
                 className={UI}
-                onClick={() => props.answerChoice(testAnswers[clickCount % 5].name, (clickCount % 5))}
+                onClick={() => props.answerChoice(testAnswers[clickCount % 6].name, (clickCount % 5))}
                 style={{fontSize: 28}}>
-                {testAnswers && testAnswers.length ? testAnswers[clickCount % 5].answers[numChoice()] : null}
+                {testAnswers && testAnswers.length ? testAnswers[clickCount % 6].answers[numChoice()] : null}
             </button>
             {/* Answer 2
                 className={UI}

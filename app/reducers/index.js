@@ -45,7 +45,14 @@ const testAnswers = (
 
 const users = (
     state = {
-        answerChoices: [],
+        answerChoices: {
+            'Adaptive': 0,
+            'Integrity': 0,
+            'Collaborative': 0,
+            'Result': 0,
+            'Customer': 0,
+            'Detail': 0
+        },
         clickCount: 0
     },
     action) => {
@@ -53,7 +60,10 @@ const users = (
         case 'ANSWER_CHOICE':
             return {
                 ...state,
-                answerChoices: [...state.answerChoices, action.payload],
+                answerChoices: {
+                    ...state.answerChoices,
+                    [action.payload]: state.answerChoices[action.payload] + 1
+                },
                 clickCount: state.clickCount + 1
             };
         default:
