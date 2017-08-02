@@ -12,8 +12,9 @@ import { UI } from '../styles/UI.scss';
 
 const Questions = (props) => {
     const {testAnswers} = props.testAnswers;
-    const {clickCount} = props.users;
+    const {answerChoices, clickCount} = props.users;
     const numChoice = utils.randNoRepeat([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    // Show results page if clickCount = 30
     if (clickCount === 30) {
         return (
             <div>
@@ -24,54 +25,50 @@ const Questions = (props) => {
                             <th>Dimension</th>
                             <th>Score</th>
                         </tr>
-                        <tr>
-                            <td>Adaptive</td>
-                            <td>{props.users.answerChoices.Adaptive}</td>
-                        </tr>
-                        <tr>
-                            <td>Integrity</td>
-                            <td>{props.users.answerChoices.Integrity}</td>
-                        </tr>
-                        <tr>
-                            <td>Collaborative</td>
-                            <td>{props.users.answerChoices.Collaborative}</td>
-                        </tr>
-                        <tr>
-                            <td>Result Oriented</td>
-                            <td>{props.users.answerChoices.Result}</td>
-                        </tr>
-                        <tr>
-                            <td>Customer Focused</td>
-                            <td>{props.users.answerChoices.Customer}</td>
-                        </tr>
-                        <tr>
-                            <td>Detail Oriented</td>
-                            <td>{props.users.answerChoices.Detail}</td>
-                        </tr>
+                        {Object.keys(answerChoices).map(item => {
+                            return (
+                                <tr>
+                                    <td>{item}</td>
+                                    <td>{answerChoices[item]}</td>
+                                </tr>
+                            );
+                        }
+                        )}
                     </tbody>
                 </table>
             </div>
         );
     }
-    return (
-        <div style={{display: 'inline-flex', flexFlow: 'column wrap'}}>
-            <h1>{clickCount}</h1>
-            {/* Answer 1 */}
-            <button
-                className={UI}
-                onClick={() => props.answerChoice(testAnswers[clickCount % 6].name, (clickCount % 5))}
-                style={{fontSize: 28}}>
-                {testAnswers && testAnswers.length ? testAnswers[clickCount % 6].answers[numChoice()] : null}
-            </button>
-            {/* Answer 2
-                className={UI}
-                onClick={() => props.answerChoice(testAnswers[clickCount].answers[numChoice()])}
-                style={{fontSize: 28}}>
-                {testAnswers && testAnswers.length ? testAnswers[clickCount].answers[numChoice()] : null}
-            </button>
-            */}
-        </div>
-    );
+    // Main Render of Questions
+    if (testAnswers && testAnswers.length) {
+        return (
+            <div style={{display: 'inline-flex', flexFlow: 'column wrap', width: '50%'}}>
+                <h1>{clickCount}</h1>
+                {/* Answer 1 */}
+                <div style={{display: 'flex', flexFlow: 'column nowrap', alignItems: 'center', justifyContent: 'center', margin: 15, padding: 15, width: '100%', boxShadow: '0px 0px 12px 5px rgba(0,0,0,0.25)'}}>
+                    <h3>{testAnswers[clickCount % 6].answers[numChoice()]}</h3>
+                    <button
+                        className={UI}
+                        onClick={() => props.answerChoice(testAnswers[clickCount % 6].name, (clickCount % 5))}
+                        style={{fontSize: 28}}>
+                        Choose
+                    </button>
+                </div>
+                {/* Answer 2
+                <div style={{display: 'flex', flexFlow: 'column nowrap', alignItems: 'center', justifyContent: 'center', margin: 15, padding: 15, width: '100%', boxShadow: '0px 0px 12px 5px rgba(0,0,0,0.25)'}}>
+                    <h3>{testAnswers[clickCount % 6].answers[numChoice()]}</h3>
+                    <button
+                        className={UI}
+                        onClick={() => props.answerChoice(testAnswers[clickCount].answers[numChoice()])}
+                        style={{fontSize: 28}}>
+                        {testAnswers[clickCount].answers[numChoice()]}
+                    </button>
+                </div>*/}
+            </div>
+        );
+    }
+
+    return null;
 };
 
 // ///////////////////////////////////////////////
@@ -96,6 +93,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
+// Wrap Component in HoC and pass lifecycle methods to avoid Class
 export default compose(
     // Connect State and Dispatch
     connect(mapStateToProps, mapDispatchToProps),
