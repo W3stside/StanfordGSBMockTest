@@ -32,7 +32,8 @@ export function fetchTestAnswers() {
 }
 
 // Keeps track of user Answers and Clicks
-export function answerChoice(answer) {
+export function answerChoice(answer, click) {
+    console.log(click);
     return {
         type: 'ANSWER_CHOICE',
         payload: answer

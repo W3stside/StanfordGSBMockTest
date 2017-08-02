@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // ACTIONS
 import { answerChoice, fetchTestAnswers } from '../actions';
-import {compose, lifecycle, withProps} from 'recompose';
+import {compose, lifecycle} from 'recompose';
 // UTILS
 import * as utils from '../utils/utils';
 // scss
@@ -13,39 +13,39 @@ import { UI } from '../styles/UI.scss';
 const Questions = (props) => {
     const {testAnswers} = props.testAnswers;
     const {clickCount} = props.users;
-    const numChoice = utils.randNum();
-    let otherDims = [];
-    if(clickCount < 4) {
-        otherDims.push(testAnswers[])
+    const numChoice = utils.randNoRepeat([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    console.log(numChoice);
+    // const variance = (click) => {
+    //     if (click >= 5) {
+    //         return click - 2;
+    //     }
+    //     return click;
+    // };
+    if (clickCount === 30) {
+        return (
+            <div>
+                <h1> Your results are: </h1>
+                { props.users.answerChoices.map(item => <h4>{item}</h4>) }
+            </div>
+        );
     }
-    // variator from initial value
-    const variance = () => {
-        switch(clickCount) {
-            case clickCount < 4:
-                return (clickCount + 1);
-            case clickCount === 4:
-                return 0;
-            default:
-                return (clickCount + 1);
-        }
-    };
-    console.log(variance());
     return (
         <div style={{display: 'inline-flex', flexFlow: 'column wrap'}}>
+            <h1>{clickCount}</h1>
             {/* Answer 1 */}
             <button
                 className={UI}
-                onClick={() => props.answerChoice(testAnswers[clickCount].answers[numChoice])}
+                onClick={() => props.answerChoice(testAnswers[clickCount % 5].name, (clickCount % 5))}
                 style={{fontSize: 28}}>
-                {testAnswers && testAnswers.length ? testAnswers[clickCount < 6 ? clickCount : 0].answers[numChoice] : null}
+                {testAnswers && testAnswers.length ? testAnswers[clickCount % 5].answers[numChoice()] : null}
             </button>
-            {/* Answer 2 */}
-            <button
+            {/* Answer 2
                 className={UI}
-                onClick={() => props.answerChoice(testAnswers[variance()].answers[numChoice])}
+                onClick={() => props.answerChoice(testAnswers[clickCount].answers[numChoice()])}
                 style={{fontSize: 28}}>
-                {testAnswers && testAnswers.length ? testAnswers[variance()].answers[numChoice] : null}
+                {testAnswers && testAnswers.length ? testAnswers[clickCount].answers[numChoice()] : null}
             </button>
+            */}
         </div>
     );
 };
@@ -75,10 +75,6 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     // Connect State and Dispatch
     connect(mapStateToProps, mapDispatchToProps),
-    // For testing props passing
-    withProps({
-        // testAnswers: [{answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}, {answers: 'ABC'}]
-    }),
     // Wrap in Class to provide LifeCycle Hooks
     lifecycle({
         componentDidMount() {
