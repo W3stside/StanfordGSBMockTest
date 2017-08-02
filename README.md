@@ -1,59 +1,90 @@
-![](http://jpsierens.com/wp-content/uploads/2016/06/react-eco-wp.gif)
+# Stanford GSB Mock Test
 
-# webpack-react-redux
-A boilerplate for playing around with react, redux and react-router with the help of webpack.
+##### Uses: 
+React, Redux, Webpack, Express
+##### Why?
+Because it's tested and works. Allows hot reloading for easy testing and avoids unnecessary full page reloads. Utilizes Webpack dev server for dev env. < -- scrapping webpack dev server for middleware and express- want to utilize express as main server for api
 
-Contains: 
+# Pre Code Thoughts...
+### Techonology
+##### Frontend
+* React front end
+* Redux for state management
+* axios for async http requests
+##### Backend
+*changing Webpack Dev Server to Webpack middleware in order to utilize Express routes as backend API routes*
+* Will build out local MongoDB + Mongoose server
+* Express
+  * API routes available at __dirname/api__
+* Node
 
-* a working example of a filterable table which you can play around with (look below).
-* ES6 - 7 Support with Babel
-* Redux dev tools to help you keep track of the app's state
-* Routing
-* hot module replacement support so you can change modules or react components without having to reload the browser
-* a webpack production config so you can build the app and make it ready for production
-* Sass support, just import your styles wherever you need them
-* eslint to keep your js readable
-* much more...
+#### Testing
+* Mocha
+* Chai
+* Chai-as-promised
 
+<hr/>
 
+### Pseudo Algo
+##### START
+1. user navs to site
+2. creates account
+3. Logins
+4. Test instructions page and CTA for starting test
+5. Questions .......
+ 1. store all questions in DB
+   * Split questions in their respective cats
+   * Create util fn to rando pick question from Arr
+   * Questions SHOULD NOT be repeated .. e.g dont ask same Adaptability questions - use deduping logic when pulling questions
+  
+ 2. Pull in questions from DB into Redux state on ComponentDidMount()
+ 3. How to present questions? <-- figure this out
+6. Results
+##### END
 
-![](http://jpsierens.com/wp-content/uploads/2016/06/filterableTable-1.gif)
+<hr/>
 
+## Test Questions Formatting Algo
+> dimesions = [Ad, In, Co, Re, Cu, De]; *Abbrv of each dimension - e.g Ad = Adaptive etc*
 
-## Run the app
+Questions:
+1. Ad or In = [0,1]
+2. In or Co = [1,2]
+3. Co or Re = [2,3] 
+4. Re or Cu = [3,4]
+5. Cu or De = [4,5]
 
-0. ```npm install```
-0. ```npm start```
+6. Ad or Co
+7. In or Re
+8. Co or Cu
+9. Re or De
+10. Cu or Ad
 
-Once running, if you want to hide the redux dev monitor: ```CTRL+H```
+11. Ad or Re
+12. In or Cu
+13. Co or De
+14. Re or Ad
+15. Cu or In
 
-Yes, it takes a while to load the first time you open the app.
+16. Ad or In
+17. In or Co
+18. Co or Re 
+29. Re or Cu
+20. Cu or De
 
-### Is the hot module replacement really working?
+21. Ad or Co
+22. In or Re
+23. Co or Cu
+24. Re or De
+25. Cu or Ad
 
-Yup! Take a look:
+26. Ad or Re
+27. In or Cu
+28. Co or De
+29. Re or Ad
+30. Cu or In
 
-![](http://jpsierens.com/wp-content/uploads/2016/06/HMR4.gif)
+## Random Notes and Thoughts on how to create this algo
+* ISSUES
+1. having trouble thinking of way to randomize question choices across all answer arrays
 
-The app updates without the browser having to reload. You don't lose state!
-
-## Build the app
-```npm run build```
-
-This will build the app into the "dist" directory in the root of the project. It contains the index.html along with the minified assets, ready for production.
-
-![](http://i.imgur.com/uUg2A3S.png)
-
-It should look something like the above image.
-
-## I don't understand anything!
-
-I went ahead and wrote a detailed series of posts on this project for you. I hope it helps you understand better:
-
-* [configuring webpack](http://jpsierens.com/tutorial-react-redux-webpack/)
-* [understanding the app, part 1 (index.js, store, reducers)](http://jpsierens.com/simple-react-redux-application/)
-* [understanding the app, part 2 ( Root.js, router and the rest of the app)](http://jpsierens.com/simple-react-redux-application-2/)
-
-## Why doesn't it have async?
-To keep it unopinionated. You choose what async library you want. If you want to check out a full example with async in it, check this simple [todo-app](https://github.com/jpsierens/todo-app) that uses redux-sagas.
-#W3stside Test App - uses React + Redux + Router // Express // Node
