@@ -84,10 +84,24 @@ Questions:
 29. Re or Ad
 30. Cu or In
 
+## Question & Goal - how to get from Dimensions Array into above format?
+ * Struggling here ... can't get any algos to work.
+ 
 ## Random Notes and Thoughts on how to create this algo
 * ISSUES
 1. having trouble thinking of way to randomize question choices across all answer arrays
   * couldn't come up with an algorithm here.
   * struggled to find any real solution
     * tried using a clickCount counter based on user clicking question answer buttons but didn't work too well
-    * 
+2. Before running out of time I had considered:
+    * Creating separate API routes for each Dimension and use API to pull in data by dimension when needed
+    * Taking the array in the front end before displaying and splitting it by dimension
+3. More though process on sorting algorithms
+    * Wanted to find a way to create a loop that would set each unique dimension as an Objects Keys - flow would be:
+        1. Create function that accepts an Array as a parameter
+        2. create an empty object Foo
+        3. array.forEach and add current iterating item's name (e.g Integrity) as the Key and an empty object as the value
+        4. on iteration check if an Object has Key Foo[item.name] - if NOT set that key:
+        if(!Foo[item.name]) { Foo[item.name] = item.name }
+            * from there, check if Foo[key] has a certain array[index] within the ohkect and if not set that value to it.
+            * Point here would be to assign 2 unique values to Foo's Keys so that they can be used as values in rendering
